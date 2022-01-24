@@ -80,7 +80,7 @@ const mainMenu = () => inquirer.prompt([
   }])
 .then((userInput) => { 
 
-  if (userInput.menuChoice === 'add engineer')
+  if (userInput.menuChoice === 'add engineer'){
    console.log('***ADDING ENGINEER***')
    inquirer.prompt([
     {
@@ -105,9 +105,9 @@ const mainMenu = () => inquirer.prompt([
     }
   ]).then((answers) => {  fs.appendFile('index.html', engineerTemplate(answers), (err) =>
   err ? console.error(err) : console.log(' ***ENGINEER WAS SAVED***'))
-  }).then(() => mainMenu());
+  }).then(()=>mainMenu());};
 
-  if (userInput.menuChoice === 'add intern')
+  if (userInput.menuChoice === 'add intern') {
   console.log('***ADDING AN INTERN***')
   inquirer.prompt([
   {
@@ -132,10 +132,10 @@ const mainMenu = () => inquirer.prompt([
   }
 ]).then((answers) => {  fs.appendFile('index.html', internTemplate(answers), (err) =>
 err ? console.error(err) : console.log(' ***INTERN WAS SAVED***'))
-}).then(() => mainMenu());
+}).then(()=>mainMenu());};
 
-  if (userInput.menuChoice === 'finish building team')
-  console.log('Team is finished, you may now view your team on your browser');
+  if (userInput.menuChoice === 'finish building team') {
+  console.log('Team is finished, you may now view your team on your browser')};
 
 //   console.log(userInput.teammateName)
 //   console.log(userInput.teammateEmail)
