@@ -31,7 +31,7 @@ const engineerTemplate = ({name, ID, email, github,}) =>
   </div>
 </div>`;
 
-const projectManagerTemplate = ({name, ID, email, github,}) =>
+const projectManagerTemplate = ({name, ID, email, office,}) =>
 `<div class="col-sm-6">
   <div class="card text-dark text-center bg-light mb-3" style="max-width: 18rem;">
     <div class="card-header">${name}</div>
@@ -40,41 +40,38 @@ const projectManagerTemplate = ({name, ID, email, github,}) =>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">${ID}</li>
             <li class="list-group-item">${email}</li>
-            <li class="list-group-item">${github}</li>
+            <li class="list-group-item">${office}</li>
         </p>
     </div>
   </div>
 </div>`;
 
+const init = () => inquirer.prompt([
+  {
+    type: 'input',
+    message: 'please enter the project manager name',
+    name: 'name'
+  },
+  {
+    type: 'input',
+    message: 'enter project manager employee ID',
+    name: 'ID'
+  },
+  {
+    type: 'input',
+    message: 'enter project manager email',
+    name: 'email'
+  },
+  {
+    type: 'input',
+    message: 'enter project manager office number',
+    name: 'office'
+  },
+]).then((answers) => {  fs.appendFile('index.html', projectManagerTemplate(answers), (err) =>
+err ? console.error(err) : console.log(' ***PROJECT MANAGER SAVED***'))
+}).then(() => mainMenu());
 
-// const finishedTeam = fs.readFile('teamHTML.txt', 'utf8', (error, data) =>
-// error ? console.error(error) : console.log(data));
-
-// const htmlUpdater = fs.appendFile('index.html', finishedTeam, (err) =>
-// err ? console.error(err) : console.log('Success!'));
-
-// NEED A CONSTRUCTOR THAT MAKES AN HTML CARD ELEMENT AND USES THE USER INPUT TO FILL CARD ELEMENT WITH TEAM MEMBER INFO
-// HTML DOC NEEDS TO DISPLAY ALL ITEMS IN A FLEX ROW
-// prompt for input with 4 options "add project managaer" "add engineer" "add Intern" "finish building team"
-// finish building team creates the html
-// add manager uses constructor to build manager object and stores string (html formatting) into a .txt fil
-//add engineer uses constructor to build engineer object
-//add intern uses constructor to build intern object
-// finish building team reads the .txt file and then creates an html file from the .txt file data
-// function TeammateMaker(name, ID, email, github) {
-//   this.name = name;
-//   this.ID = ID;
-//   this.email = email;
-//   this.github = github;
-
-//   // this.makeNoise = () => {
-//   //   if (this.raining === true) {
-//   //     console.log(this.noise);
-//   //   }
-//   // };
-// }
-
-inquirer.prompt([
+const mainMenu = () => inquirer.prompt([
   {
     type: 'list',
     message: 'Please pick an option',
@@ -84,7 +81,31 @@ inquirer.prompt([
 .then((userInput) => { 
 
   if (userInput.menuChoice === 'add engineer')
-   console.log('adding engineer');
+   console.log('***ADDING ENGINEER***')
+   inquirer.prompt([
+    {
+      type: 'input',
+      message: 'enter name',
+      name: 'name'
+    },
+    {
+      type: 'input',
+      message: 'enter employee ID',
+      name: 'ID'
+    },
+    {
+      type: 'input',
+      message: 'enter email',
+      name: 'email'
+    },
+    {
+      type: 'input',
+      message: 'enter github username',
+      name: 'github'
+    }
+  ]).then((answers) => {  fs.appendFile('index.html', engineerTemplate(answers), (err) =>
+  err ? console.error(err) : console.log(' ***ENGINEER WAS SAVED***'))
+  }).then(() => mainMenu());
 
   if (userInput.menuChoice === 'add intern')
   console.log('***ADDING AN INTERN***')
@@ -110,11 +131,11 @@ inquirer.prompt([
     name: 'github'
   }
 ]).then((answers) => {  fs.appendFile('index.html', internTemplate(answers), (err) =>
-err ? console.error(err) : console.log('Success!'))
-});
+err ? console.error(err) : console.log(' ***INTERN WAS SAVED***'))
+}).then(() => mainMenu());
 
   if (userInput.menuChoice === 'finish building team')
-  console.log('finishing team');
+  console.log('Team is finished, you may now view your team on your browser');
 
 //   console.log(userInput.teammateName)
 //   console.log(userInput.teammateEmail)
@@ -140,3 +161,5 @@ err ? console.error(err) : console.log('Success!'))
   
 
 });
+
+init()
