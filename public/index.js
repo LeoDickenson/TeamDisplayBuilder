@@ -35,7 +35,7 @@ inquirer.prompt([
   console.log(userInput.teammateName)
   console.log(userInput.teammateEmail)
 
-  fs.appendFile('log.txt', JSON.stringify(userInput), (err) =>
+  fs.appendFile('index.html', JSON.stringify(userInput), (err) =>
   err ? console.error(err) : console.log('Success!'))
 
 });
