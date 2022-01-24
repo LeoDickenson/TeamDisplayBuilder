@@ -1,0 +1,23 @@
+{
+  "name": "teamdisplaybuilder",
+  "version": "1.0.0",
+  "description": "creates cards through command line inputs to display the info of your team members onto an HTML doc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeoDickenson/TeamDisplayBuilder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeoDickenson/TeamDisplayBuilder/issues"
+  },
+  "homepage": "https://github.com/LeoDickenson/TeamDisplayBuilder#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "inquirer": "^8.2.0"
+  }
+}
